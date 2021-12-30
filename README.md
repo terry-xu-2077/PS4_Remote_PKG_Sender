@@ -8,4 +8,4 @@ Thanks to the authors below for their repositories:
 [Twisted](https://github.com/twisted/twisted) to create the download server.
 
 Available for direct use:
-[Compiled exe file](https://github.com/TeriHsu/PS4_Remote_PKG_Sender/tree/main/dist)
+[Compiled exe file](https://github.com/TeriHsu/PS4_Remote_PKG_Sender/releases/download/PS4_Remote_PKG_Sender_v1.0.0/PS4.Remote.PKG_Sender.exe)
