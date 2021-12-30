@@ -265,7 +265,4 @@ def getPkgInfo(pkg_file_path):
 		traceback.print_exc(file=sys.stdout)
 
 if __name__ == '__main__':
-	pkg_path = r'E:\Downloads\BaiduNetdiskDownload\【F】《方根书简》港版 繁体中文版\HP0117-CUSA05530方根书简-中文版.pkg'
-	info = getPkgInfo(pkg_path)
-	for k in info.keys():
-		print(k+":",info[k])
+	pass
