@@ -8,7 +8,7 @@ import os
 from urllib.parse import quote
 import sys
 
-debug = True
+debug = False
 # 生成资源文件目录访问路径
 def get_resource_path(resource_path):
     if getattr(sys, 'frozen', False):  # 是否Bundle Resource
