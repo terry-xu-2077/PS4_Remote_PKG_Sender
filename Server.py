@@ -1,87 +1,8 @@
-import json
-import subprocess
 import threading
 import time
-import os
 import requests
-from twisted.web import resource
 from twisted.internet import reactor, endpoints
 from twisted.web import static, server
-from MyPage import get_index_html
-
-class PkgServer():
-    __server_td = None
-    __devNull = open(os.devnull,'w')
-    def __init__(self,port,RES_PATH):
-        self.port = port
-        self.running = False
-        self.__nodejs = RES_PATH + '/node.exe'
-        self.__server_js = RES_PATH + '/SERVER.JS'
-
-    def start(self):
-        self.__server_td = threading.Thread(target=self.__server)
-        self.__server_td.start()
-        self.running = self.__server_td.is_alive()
-        return self.running
-
-    def reset_port(self,newport):
-        self.port = newport
-        if self.running:
-            self.stop()
-        self.start()
-
-    def is_ready(self):
-        i = 0
-        while True:
-            if i == 2:
-                return False
-            req = requests.get('http://127.0.0.1:{}/ready'.format(self.port))
-            print(req.text)
-            if req.text == 'SERVE:OK':
-                return True
-            i += 0.2
-            time.sleep(0.2)
-
-    def stop(self):
-        if self.running:
-            self.__server_process.kill()
-            self.running = self.__server_td.is_alive()
-        return self.running
-
-    def exist(self):
-        if self.__server_td != None:
-            return self.__server_td.is_alive()
-        else:
-            return False
-
-    def update(self,treedata):
-        try:
-            pkgJson = json.dumps({'infolist':treedata}).encode('utf-8')
-            req = requests.post('http://127.0.0.1:{}/pkglist'.format(self.port),data=pkgJson)
-            if req.text == 'UPDATE:list':
-                return True
-            else:
-                return False
-        except:
-            return False
-
-    def send(self,info):
-        try:
-            pkgJson = json.dumps({'info':info}).encode('utf-8')
-            req = requests.post('http://127.0.0.1:{}/pkginfo'.format(self.port),data=pkgJson)
-            print(req.text)
-            if req.text == 'UPDATE:OK':
-                return True
-            else:
-                return False
-        except:
-            return False
-
-    def __server(self):
-        self.__server_process = subprocess.Popen(
-            [self.__nodejs,self.__server_js, '-p', str(self.port)],
-            stdout=subprocess.PIPE,
-        )
 
 class FilesServer():
     fileType = 'application/octet-stream'
