@@ -1,0 +1,505 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.1">
+  <object class="tk.Menu" id="tree_menu">
+    <property name="tearoff">false</property>
+    <child>
+      <object class="tk.Menuitem.Command" id="command_up">
+        <property name="command" type="command" cbtype="with_wid">treeMenuCommand</property>
+        <property name="label" translatable="yes">MoveUp</property>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Menuitem.Command" id="command_down">
+        <property name="command" type="command" cbtype="with_wid">treeMenuCommand</property>
+        <property name="label" translatable="yes">MoveDown</property>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Menuitem.Separator" id="separator3" />
+    </child>
+    <child>
+      <object class="tk.Menuitem.Command" id="command_skip">
+        <property name="command" type="command" cbtype="with_wid">treeMenuCommand</property>
+        <property name="label" translatable="yes">Skip</property>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Menuitem.Command" id="command_unskip">
+        <property name="command" type="command" cbtype="with_wid">treeMenuCommand</property>
+        <property name="label" translatable="yes">Join</property>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Menuitem.Separator" id="separator2" />
+    </child>
+    <child>
+      <object class="tk.Menuitem.Command" id="command_del">
+        <property name="command" type="command" cbtype="with_wid">treeMenuCommand</property>
+        <property name="label" translatable="yes">Delete</property>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Menuitem.Command" id="command_clear">
+        <property name="command" type="command" cbtype="with_wid">treeMenuCommand</property>
+        <property name="label" translatable="yes">ClearAll</property>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Menuitem.Separator" id="separator5" />
+    </child>
+    <child>
+      <object class="tk.Menuitem.Command" id="command_open">
+        <property name="command" type="command" cbtype="with_wid">treeMenuCommand</property>
+        <property name="label" translatable="yes">OpenFolder</property>
+      </object>
+    </child>
+  </object>
+  <object class="tk.Toplevel" id="toplevel1">
+    <property name="geometry">1000x540</property>
+    <property name="height">540</property>
+    <property name="minsize">1000|540</property>
+    <property name="padx">14</property>
+    <property name="pady">14</property>
+    <property name="title" translatable="yes">Remote Packages Sender</property>
+    <property name="width">1000</property>
+    <child>
+      <object class="ttk.Frame" id="top_widgets">
+        <property name="height">200</property>
+        <property name="width">400</property>
+        <layout manager="pack">
+          <property name="fill">x</property>
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Frame" id="frame_serverIP">
+            <property name="height">0</property>
+            <property name="width">0</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">left</property>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="label2">
+                <property name="text" translatable="yes">Server IP :</property>
+                <layout manager="grid">
+                  <property name="column">1</property>
+                  <property name="padx">4</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Combobox" id="boxServerIP">
+                <property name="justify">center</property>
+                <property name="state">readonly</property>
+                <bind sequence="&lt;&lt;ComboboxSelected&gt;&gt;" handler="combox_changed" add="True" />
+                <layout manager="grid">
+                  <property name="column">2</property>
+                  <property name="padx">4</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="label4">
+                <property name="text" translatable="yes">Port :</property>
+                <layout manager="grid">
+                  <property name="column">3</property>
+                  <property name="padx">4</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Entry" id="entry_Port">
+                <property name="justify">center</property>
+                <property name="text" translatable="yes">8888</property>
+                <property name="width">10</property>
+                <layout manager="grid">
+                  <property name="column">4</property>
+                  <property name="padx">4</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Canvas" id="canvas_server">
+                <property name="height">16</property>
+                <property name="width">16</property>
+                <layout manager="grid">
+                  <property name="column">0</property>
+                  <property name="padx">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="frame_PS4IP">
+            <property name="height">0</property>
+            <property name="width">0</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">right</property>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="label3">
+                <property name="text" translatable="yes">PS4 IP :</property>
+                <layout manager="grid">
+                  <property name="column">1</property>
+                  <property name="padx">2</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                  <property type="row" id="0" name="minsize">0</property>
+                  <property type="row" id="0" name="pad">0</property>
+                  <property type="row" id="0" name="uniform">0</property>
+                  <property type="row" id="0" name="weight">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Entry" id="entry_ps4ip">
+                <property name="justify">center</property>
+                <layout manager="grid">
+                  <property name="column">2</property>
+                  <property name="padx">4</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                  <property type="row" id="0" name="minsize">0</property>
+                  <property type="row" id="0" name="pad">0</property>
+                  <property type="row" id="0" name="uniform">0</property>
+                  <property type="row" id="0" name="weight">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Canvas" id="canvas_ps4">
+                <property name="height">16</property>
+                <property name="width">16</property>
+                <layout manager="grid">
+                  <property name="column">0</property>
+                  <property name="padx">2</property>
+                  <property name="pady">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                  <property type="row" id="0" name="minsize">0</property>
+                  <property type="row" id="0" name="pad">0</property>
+                  <property type="row" id="0" name="uniform">0</property>
+                  <property type="row" id="0" name="weight">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="button_check_ps4_ip">
+                <property name="command" type="command" cbtype="simple">check_ps4_ip</property>
+                <property name="text" translatable="yes">Check</property>
+                <property name="width">6</property>
+                <layout manager="grid">
+                  <property name="column">3</property>
+                  <property name="padx">0</property>
+                  <property name="pady">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                  <property type="row" id="0" name="minsize">0</property>
+                  <property type="row" id="0" name="pad">0</property>
+                  <property type="row" id="0" name="uniform">0</property>
+                  <property type="row" id="0" name="weight">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label1_url">
+            <property name="foreground">#494949</property>
+            <property name="text" translatable="yes">Open Server in browser</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="padx">6</property>
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="labelframe2">
+        <property name="height">200</property>
+        <property name="text" translatable="yes">Task</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+          <property name="ipadx">0</property>
+          <property name="pady">4</property>
+          <property name="propagate">False</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="pygubu.builder.widgets.editabletreeview" id="tree_pkg_info">
+            <property name="height">10</property>
+            <property name="selectmode">extended</property>
+            <property name="show">headings</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="propagate">True</property>
+              <property name="side">left</property>
+            </layout>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_id">
+                <property name="column_anchor">center</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">34</property>
+                <property name="stretch">false</property>
+                <property name="text" translatable="yes">#</property>
+                <property name="tree_column">false</property>
+                <property name="visible">true</property>
+                <property name="width">34</property>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_type">
+                <property name="column_anchor">center</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">84</property>
+                <property name="stretch">false</property>
+                <property name="text" translatable="yes">Type</property>
+                <property name="tree_column">false</property>
+                <property name="visible">true</property>
+                <property name="width">84</property>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_version">
+                <property name="column_anchor">center</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">84</property>
+                <property name="stretch">false</property>
+                <property name="text" translatable="yes">Version</property>
+                <property name="tree_column">false</property>
+                <property name="visible">true</property>
+                <property name="width">84</property>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_title_id">
+                <property name="column_anchor">center</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">84</property>
+                <property name="stretch">false</property>
+                <property name="text" translatable="yes">Title ID</property>
+                <property name="tree_column">false</property>
+                <property name="visible">true</property>
+                <property name="width">84</property>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_title">
+                <property name="column_anchor">center</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">140</property>
+                <property name="stretch">true</property>
+                <property name="text" translatable="yes">Title</property>
+                <property name="tree_column">false</property>
+                <property name="visible">true</property>
+                <property name="width">140</property>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_file_name">
+                <property name="column_anchor">w</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">200</property>
+                <property name="stretch">true</property>
+                <property name="text" translatable="yes">File name</property>
+                <property name="tree_column">false</property>
+                <property name="visible">true</property>
+                <property name="width">200</property>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_file_size">
+                <property name="column_anchor">center</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">84</property>
+                <property name="stretch">false</property>
+                <property name="text" translatable="yes">File Size</property>
+                <property name="tree_column">false</property>
+                <property name="visible">true</property>
+                <property name="width">84</property>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_status">
+                <property name="column_anchor">center</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">130</property>
+                <property name="stretch">false</property>
+                <property name="text" translatable="yes">Status</property>
+                <property name="tree_column">false</property>
+                <property name="visible">true</property>
+                <property name="width">130</property>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Treeview.Column" id="column_path">
+                <property name="column_anchor">center</property>
+                <property name="heading_anchor">center</property>
+                <property name="minwidth">0</property>
+                <property name="stretch">false</property>
+                <property name="text" translatable="yes">Path</property>
+                <property name="tree_column">false</property>
+                <property name="visible">false</property>
+                <property name="width">0</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Scrollbar" id="scrollbar1">
+            <property name="orient">vertical</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">y</property>
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame9">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="fill">x</property>
+          <property name="ipadx">0</property>
+          <property name="ipady">0</property>
+          <property name="padx">0</property>
+          <property name="pady">0</property>
+          <property name="propagate">True</property>
+          <property name="side">bottom</property>
+        </layout>
+        <child>
+          <object class="ttk.Frame" id="frame_group1">
+            <property name="height">200</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">left</property>
+            </layout>
+            <child>
+              <object class="ttk.Button" id="button_import">
+                <property name="command" type="command" cbtype="simple">btn1_clicked</property>
+                <property name="text" translatable="yes">Import PKG</property>
+                <layout manager="pack">
+                  <property name="side">left</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="button_stop">
+                <property name="command" type="command" cbtype="simple">btn4_clicked</property>
+                <property name="text" translatable="yes">Stop</property>
+                <layout manager="pack">
+                  <property name="side">right</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Separator" id="separator1">
+                <property name="orient">vertical</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="ipady">5</property>
+                  <property name="padx">5</property>
+                  <property name="side">left</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="frame_group3">
+            <property name="height">200</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">right</property>
+            </layout>
+            <child>
+              <object class="ttk.Button" id="button_send">
+                <property name="command" type="command" cbtype="simple">btn3_clicked</property>
+                <property name="text" translatable="yes">Send !</property>
+                <layout manager="pack">
+                  <property name="propagate">True</property>
+                  <property name="side">right</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label_task_id">
+            <property name="cursor">hand2</property>
+            <property name="foreground">#494949</property>
+            <property name="text" translatable="yes">97.34 %  |  rest: 0 : 2  |  70.81 MB/S</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="propagate">True</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label5">
+            <layout manager="pack">
+              <property name="expand">false</property>
+              <property name="fill">x</property>
+              <property name="ipadx">48</property>
+              <property name="padx">0</property>
+              <property name="propagate">True</property>
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame_group2">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">false</property>
+          <property name="fill">x</property>
+          <property name="ipady">6</property>
+          <property name="propagate">True</property>
+          <property name="side">bottom</property>
+        </layout>
+        <child>
+          <object class="ttk.Progressbar" id="progressbar1">
+            <property name="maximum">1000</property>
+            <property name="orient">horizontal</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">x</property>
+              <property name="propagate">True</property>
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
