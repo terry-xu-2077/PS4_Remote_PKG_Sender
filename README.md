@@ -1,5 +1,5 @@
 # PS4_Remote_PKG_Sender
-Use with Remote PKG Installer
+Used with the [remote PKG installer](https://github.com/flatz/ps4_remote_pkg_installer) on PS4
 
 Thanks to the authors below for their repositories:
 
